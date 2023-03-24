@@ -1,4 +1,5 @@
-var tenants_information;
+var tenants_information, current_status, selectedSwitch;
+var selected_id = -1;
 (function ($) {
 
     'use strict';
@@ -31,9 +32,9 @@ var tenants_information;
                     html_str +=                 '<div class="d-flex justify-content-between px-2 mb-2 mt-4">';
                     html_str +=                     '<button class="btn btn-primary btn-sm btn-detail" tenant_index="'+i+'">View in Detail</button>';
                     if(tenant.approval_status==0){
-                        html_str +=                 '<input type="checkbox" data-size="sm" data-toggle="toggle" data-on="Approved" data-off="Pending" data-onstyle="success" data-offstyle="danger">';
+                        html_str +=                 '<input type="checkbox" tenant_index="'+i+'" class="switch" data-size="sm" data-toggle="toggle" data-on="Approved" data-off="Pending" data-onstyle="success" data-offstyle="danger">';
                     }else {
-                        html_str +=                 '<input type="checkbox" data-size="sm" checked data-toggle="toggle" data-on="Approved" data-off="Pending" data-onstyle="success" data-offstyle="danger">';
+                        html_str +=                 '<input type="checkbox" tenant_index="'+i+'" class="switch" data-size="sm" checked data-toggle="toggle" data-on="Approved" data-off="Pending" data-onstyle="success" data-offstyle="danger">';
                     }
                     html_str +=                 '</div>';
                     html_str +=             '</div>';
@@ -43,6 +44,18 @@ var tenants_information;
                 });
                 $('#data_panel').html(html_str);
                 $('input[type="checkbox"]').bootstrapToggle();
+                $('.switch').change(function(){
+                    let index = $(this).attr('tenant_index');
+                    selected_id = tenants_information[index].id;
+                    current_status = $(this).prop('checked');
+                    selectedSwitch = $(this);
+                    if(current_status) {
+                        $('#confirm_string').html("Are you sure to approve this tenant?");
+                    }else {
+                        $('#confirm_string').html("Are you sure to reject this tenant?");
+                    }
+                    $('#confirm_form').modal();
+                });
                 $('.btn-detail').click(function(){
                     let index = $(this).attr('tenant_index');
                     let tenant_info = tenants_information[index];
@@ -111,6 +124,28 @@ var tenants_information;
                     getAllData();
                 }
             });
+        });
+
+        $('#btn_approve').click(function(){
+            $.ajax({
+                type: "POST",
+                url: "https://trackyourcamper.com:3001/api/approve",
+                data: "tenant_id="+selected_id+"&status="+current_status, // serializes the form's elements.
+                success: function(data)
+                {
+                    console.log(data);
+                    getAllData();
+                }
+            });
+            $('#confirm_form').modal('toggle');
+        });
+
+        $('#btn_cancel').click(function(){
+            if(current_status){
+                $(selectedSwitch).bootstrapToggle('off');
+            }else {
+                $(selectedSwitch).bootstrapToggle('on');
+            }
         });
     }
     init();

@@ -75,7 +75,7 @@
             </div>
             <!-- end page title end breadcrumb -->
             <div class="row" id="data_panel">
-                <div class="col-lg-3 col-md-4 col-sm-6">
+                <!-- <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="card">
                         <div class="upper">
                         </div>
@@ -98,7 +98,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div><!-- End row -->
 
         </div><!-- container -->
@@ -110,6 +110,23 @@
     <!-- end page content -->
 </div>
 <!-- end page-wrapper -->
+<div class="modal fade" id="confirm_form" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+            </div>
+            <div class="modal-body">
+                <p id="confirm_string">Are you sure to approve this tenant?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btn_approve">Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btn_cancel">No</button>
+              </div>
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="detail_form" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
