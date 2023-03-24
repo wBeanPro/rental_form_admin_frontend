@@ -6,9 +6,9 @@
         $.ajax({
             type: "POST",
             url: "https://trackyourcamper.com:3001/api/getAllData",
-            data: form.serialize(), // serializes the form's elements.
             success: function(data)
             {
+                console.log(data);
                 // sessionStorage.setItem("login_status", true);
                 // $('#login_part').hide();
                 // $('#main_part').show();
