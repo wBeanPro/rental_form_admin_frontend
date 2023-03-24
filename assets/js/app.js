@@ -22,7 +22,7 @@ var tenants_information;
                     html_str +=             '</div>';
                     html_str +=         '</div>';
                     html_str +=         '<div class="mt-5">';
-                    html_str +=             '<h4 class="mb-0 text-center">Benjamin Tims</h4>';
+                    html_str +=             '<h4 class="mb-0 text-center">'+tenant.name+'</h4>';
                     html_str +=                 '<span class="text-muted d-block mt-2 mb-2 pl-2">'+tenant.email+'</span>';
                     html_str +=                 '<span class="text-muted d-block mt-2 mb-2 pl-2">'+tenant.phone+'</span>';
                     html_str +=                 '<span class="text-muted d-block mt-2 mb-2 pl-2">'+tenant.address+'</span>';
@@ -75,6 +75,9 @@ var tenants_information;
                     $('#tenant_back_card').attr('src', "https://trackyourcamper.com:3001/images/"+tenant_info.back_idcard);
                     $('#tenant_selfie').attr('src', "https://trackyourcamper.com:3001/images/"+tenant_info.selfie);
                     $('#tenant_signature').attr('src', "https://trackyourcamper.com:3001/images/"+tenant_info.signature);
+                    if(tenant_info.approval_status==0){
+                        $('#modal_checkbox').prop("checked", false);
+                    }else $('#modal_checkbox').prop("checked", true);
                     $('#detail_form').modal();
                 });  
             }
