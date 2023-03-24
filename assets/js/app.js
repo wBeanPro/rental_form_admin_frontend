@@ -1,4 +1,4 @@
-var tenants_information, current_status, selectedSwitch;
+var tenants_information, current_status, selectedSwitch, detail_index;
 var selected_id = -1;
 (function ($) {
 
@@ -57,8 +57,8 @@ var selected_id = -1;
                     $('#confirm_form').modal();
                 });
                 $('.btn-detail').click(function(){
-                    let index = $(this).attr('tenant_index');
-                    let tenant_info = tenants_information[index];
+                    detail_index = $(this).attr('tenant_index');
+                    let tenant_info = tenants_information[detail_index];
                     $('#tenant_name').html(tenant_info.name);
                     $('#tenant_email').html(tenant_info.email);
                     $('#tenant_phone').html(tenant_info.phone);
@@ -108,7 +108,17 @@ var selected_id = -1;
             getAllData();
             $('#login_part').hide();
         }
-         
+        $('#modal_checkbox').change(function(){
+            selected_id = tenants_information[detail_index].id;
+            current_status = $(this).prop('checked');
+            selectedSwitch = $(this);
+            if(current_status) {
+                $('#confirm_string').html("Are you sure to approve this tenant?");
+            }else {
+                $('#confirm_string').html("Are you sure to reject this tenant?");
+            }
+            $('#confirm_form').modal();
+        });
         $("#admin_login").submit(function(e) {
             e.preventDefault(); 
             var form = $(this);
