@@ -39,6 +39,7 @@
                     html_str += '</div>';
                 });
                 $('#data_panel').html(html_str);
+                $('input[type="checkbox"]').bootstrapToggle();
             }
         });
     }
