@@ -23,6 +23,7 @@
             $('#login_part').show();
         }else {
             $('#main_part').show();
+            getAllData();
             $('#login_part').hide();
         }
         $('.btn-detail').click(function(){
