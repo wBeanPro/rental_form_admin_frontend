@@ -33,7 +33,7 @@
             var form = $(this);
             $.ajax({
                 type: "POST",
-                url: "https://trackyourcamper.com:3001/api/userRegister",
+                url: "https://trackyourcamper.com:3001/api/login",
                 data: form.serialize(), // serializes the form's elements.
                 success: function(data)
                 {
