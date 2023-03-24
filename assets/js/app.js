@@ -76,8 +76,8 @@ var tenants_information;
                     $('#tenant_selfie').attr('src', "https://trackyourcamper.com:3001/images/"+tenant_info.selfie);
                     $('#tenant_signature').attr('src', "https://trackyourcamper.com:3001/images/"+tenant_info.signature);
                     if(tenant_info.approval_status==0){
-                        $('#modal_checkbox').prop("checked", false);
-                    }else $('#modal_checkbox').prop("checked", true);
+                        $('#modal_checkbox').bootstrapToggle('off')
+                    }else $('#modal_checkbox').bootstrapToggle('on')
                     $('#detail_form').modal();
                 });  
             }
