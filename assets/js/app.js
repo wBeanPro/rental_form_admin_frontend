@@ -94,7 +94,17 @@ var selected_id = -1;
                     }else $('#modal_checkbox').html('<input type="checkbox" class="modal_switch" data-size="sm" checked data-toggle="toggle" data-on="Approved" data-off="Pending" data-onstyle="success" data-offstyle="danger">');
                     $('.modal_switch').bootstrapToggle();
                     $('#detail_form').modal();
-                    
+                    $('.modal_switch').change(function(){
+                        selected_id = tenants_information[detail_index].id;
+                        current_status = $(this).prop('checked');
+                        selectedSwitch = $(this);
+                        if(current_status) {
+                            $('#confirm_string').html("Are you sure to approve this tenant?");
+                        }else {
+                            $('#confirm_string').html("Are you sure to reject this tenant?");
+                        }
+                        $('#confirm_form').modal();
+                    });
                 });  
             }
         });
@@ -110,17 +120,7 @@ var selected_id = -1;
             getAllData();
             $('#login_part').hide();
         }
-        $('.modal_switch').change(function(){
-            selected_id = tenants_information[detail_index].id;
-            current_status = $(this).prop('checked');
-            selectedSwitch = $(this);
-            if(current_status) {
-                $('#confirm_string').html("Are you sure to approve this tenant?");
-            }else {
-                $('#confirm_string').html("Are you sure to reject this tenant?");
-            }
-            $('#confirm_form').modal();
-        });
+        
         $("#admin_login").submit(function(e) {
             e.preventDefault(); 
             var form = $(this);
