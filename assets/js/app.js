@@ -90,10 +90,11 @@ var selected_id = -1;
                     $('#tenant_selfie').attr('src', "https://trackyourcamper.com:3001/images/"+tenant_info.selfie);
                     $('#tenant_signature').attr('src', "https://trackyourcamper.com:3001/images/"+tenant_info.signature);
                     if(tenant_info.approval_status==0){
-                        $('#modal_checkbox').bootstrapToggle('off');
-                    }else $('#modal_checkbox').bootstrapToggle('on')
+                        $('#modal_checkbox').html('<input type="checkbox" class="modal_switch" data-size="sm" data-toggle="toggle" data-on="Approved" data-off="Pending" data-onstyle="success" data-offstyle="danger">');
+                    }else $('#modal_checkbox').html('<input type="checkbox" class="modal_switch" data-size="sm" checked data-toggle="toggle" data-on="Approved" data-off="Pending" data-onstyle="success" data-offstyle="danger">');
+                    $('.modal_switch').bootstrapToggle();
                     $('#detail_form').modal();
-                    $('#confirm_form').modal('toggle');
+                    
                 });  
             }
         });
@@ -109,7 +110,7 @@ var selected_id = -1;
             getAllData();
             $('#login_part').hide();
         }
-        $('#modal_checkbox').change(function(){
+        $('.modal_switch').change(function(){
             selected_id = tenants_information[detail_index].id;
             current_status = $(this).prop('checked');
             selectedSwitch = $(this);
