@@ -10,7 +10,7 @@
             {
                 console.log(data);
                 var html_str = "";
-                for (tenant in data) {
+                jQuery.each(data, function( i, tenant ) {
                     html_str += '<div class="col-lg-3 col-md-4 col-sm-6">';
                     html_str +=     '<div class="card">';
                     html_str +=         '<div class="upper"></div>';
@@ -37,7 +37,7 @@
                     html_str +=         '</div>';
                     html_str +=     '</div>';
                     html_str += '</div>';
-                }
+                });
                 $('#data_panel').html(html_str);
             }
         });
