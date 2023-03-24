@@ -108,7 +108,7 @@ var selected_id = -1;
             getAllData();
             $('#login_part').hide();
         }
-        $('#modal_checkbox').change(function(){
+        $('#modal_checkbox').click(function(){
             selected_id = tenants_information[detail_index].id;
             current_status = $(this).prop('checked');
             selectedSwitch = $(this);
